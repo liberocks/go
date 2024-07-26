@@ -9,7 +9,6 @@ func main() {
 
 	fmt.Print("Enter a number: ")
 	fmt.Scan(&n)
-	fmt.Println("read number", n, "from stdin")
 
 	fizzBuzz(n)
 }
