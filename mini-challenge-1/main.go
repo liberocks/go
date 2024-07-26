@@ -15,7 +15,6 @@ func main() {
 }
 
 func fizzBuzz(n int) {
-	// loop from 1 to i
 	for i := 1; i <= n; i++ {
 		divisibleByThree := i%3 == 0
 		divisibleByFive := i%5 == 0
