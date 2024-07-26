@@ -17,11 +17,14 @@ func main() {
 func fizzBuzz(n int) {
 	// loop from 1 to i
 	for i := 1; i <= n; i++ {
-		if i%3 == 0 && i%5 == 0 {
+		divisibleByThree := i%3 == 0
+		divisibleByFive := i%5 == 0
+
+		if divisibleByThree && divisibleByFive {
 			fmt.Println("FizzBuzz")
-		} else if i%3 == 0 {
+		} else if divisibleByThree {
 			fmt.Println("Fizz")
-		} else if i%5 == 0 {
+		} else if divisibleByFive {
 			fmt.Println("Buzz")
 		} else {
 			fmt.Println(i)
