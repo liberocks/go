@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: postgresql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: order-service
+    ports:
+      - "5432:5432"
+
+  order-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: user-service
+    restart: on-failure
+    depends_on:
+      - postgresql
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_URL=postgresql://postgres:admin@postgresql:5432/order-service?sslmode=disable
+      - SECRET_KEY=supersecret
