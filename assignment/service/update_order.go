@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/gofrs/uuid"
 	"github.com/liberocks/go/assignment/dto"
 	"github.com/liberocks/go/assignment/helpers"
 	"github.com/liberocks/go/assignment/model"
@@ -58,7 +59,14 @@ func UpdateOrder(id string, customerName string, orderedAt string, items []dto.U
 
 	// Insert items into the order_items table
 	for _, item := range items {
-		_, err := tx.Exec(repository.CREATE_ITEM_STATEMENT, item.Name, item.Description, item.Quantity, id)
+		// Generate uuid
+		itemId, err := uuid.NewV7()
+		if err != nil {
+			log.Error().Err(err).Msg("[repository/update_order] Failed to generate UUID")
+			return "", http.StatusInternalServerError, err
+		}
+
+		_, err = tx.Exec(repository.CREATE_ITEM_STATEMENT, itemId, item.Name, item.Description, item.Quantity, id)
 		if err != nil {
 			tx.Rollback()
 			log.Error().Err(err).Msgf("[repository/update_order] Failed to insert item: %v", err)
