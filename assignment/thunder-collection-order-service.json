@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "Order Service",
     "collectionId": "41b41b29-c001-445f-a527-142af46c8012",
-    "dateExported": "2024-09-05T12:32:16.458Z",
+    "dateExported": "2024-09-05T13:39:26.835Z",
     "version": "1.2",
     "folders": [],
     "requests": [
@@ -15,12 +15,16 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-09-05T06:21:05.037Z",
-            "modified": "2024-09-05T06:30:47.995Z",
+            "modified": "2024-09-05T13:36:28.884Z",
             "headers": [],
             "body": {
                 "type": "json",
                 "raw": "{\n  \"orderedAt\": \"2019-11-09T21:21:46+00:00\",\n  \"customerName\": \"Fitri\",\n  \"items\":[\n    {\n      \"name\": \"iPhone\",\n      \"description\": \"iPhone 11 Pro\",\n      \"quantity\": 2\n    }\n  ]\n}",
                 "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjU2MjkxNzIsInVzZXJJZCI6IjAxOTFjMjViLWRkMDgtNzA3OC05NTY1LTU4MTkxZTU0M2Q4YiJ9.aN8He4Ktc3dbcNRLRvA-cFV5uQXUIgBXgnnfNhxxD2s"
             }
         },
         {
@@ -65,6 +69,23 @@
             "headers": []
         },
         {
+            "_id": "7aecd8df-7bdf-4fb6-9e3c-e1179cf6849e",
+            "colId": "41b41b29-c001-445f-a527-142af46c8012",
+            "containerId": "",
+            "name": "Sign-up",
+            "url": "http://0.0.0.0:8080/sign-up",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-09-05T13:13:57.005Z",
+            "modified": "2024-09-05T13:34:22.523Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"admn@mail.com\",\n  \"password\": \"password\"\n}",
+                "form": []
+            }
+        },
+        {
             "_id": "261176f4-f03f-46b4-b7da-7015ce1ef0cf",
             "colId": "41b41b29-c001-445f-a527-142af46c8012",
             "containerId": "",
@@ -87,7 +108,24 @@
             "created": "2024-09-05T06:56:16.831Z",
             "modified": "2024-09-05T07:25:09.913Z",
             "headers": []
+        },
+        {
+            "_id": "3ee6ca78-bac7-4e18-ab2b-7a30a2306c99",
+            "colId": "41b41b29-c001-445f-a527-142af46c8012",
+            "containerId": "",
+            "name": "Sign-in",
+            "url": "http://0.0.0.0:8080/sign-in",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-09-05T13:25:04.499Z",
+            "modified": "2024-09-05T13:25:19.628Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"admin@mail.com\",\n  \"password\": \"password\"\n}",
+                "form": []
+            }
         }
     ],
-    "ref": "3t2fKJeaQrVBevzvy4FjG4hFU326gLIv2SqKRXOrriuxwqh6llyzk22BUNqjPOSTPv1x7s6fY6esujmc5H1Y7Q"
+    "ref": "3t2fKJeaQrVBevzvy4FjGy-DBzYOSOFx-H4Y0iYc3Z56MIBjKp0wklGhJszoN-AGrLxGIWRQeA9NW0cMf1coTA"
 }
