@@ -35,6 +35,7 @@ func DeleteOrder(id string) (int, error) {
 		return http.StatusNotFound, err
 	}
 
+	// Delete order from the orders table
 	_, err = tx.Exec(repository.DELETE_ORDER_STATEMENT, id)
 	if err != nil {
 		tx.Rollback()
@@ -43,6 +44,7 @@ func DeleteOrder(id string) (int, error) {
 		return http.StatusNotFound, err
 	}
 
+	// Commit the transaction
 	err = tx.Commit()
 	if err != nil {
 		log.Error().Err(err).Msgf("[repository/delete_order] Failed to commit transaction: %v", err)

@@ -14,6 +14,7 @@ func GetOrderDetail(id string) (dto.GetOrderDetailResponse, int, error) {
 
 	var order = dto.GetOrderDetailResponse{}
 
+	// Get order from the orders table
 	err := db.QueryRow(repository.GET_ORDER_STATEMENT, id).Scan(&order.Id, &order.CustomerName, &order.OrderedAt, &order.CreatedAt, &order.UpdatedAt)
 	if err != nil {
 		log.Error().Err(err).Msgf("[repository/get_order_detail] Failed to get order: %v", err)
@@ -21,13 +22,14 @@ func GetOrderDetail(id string) (dto.GetOrderDetailResponse, int, error) {
 		return order, http.StatusNotFound, err
 	}
 
-	// Insert items into the order_items table
+	// Get items from the order_items table
 	rows, err := db.Query(repository.GET_ITEMS_STATEMENT, id)
 	if err != nil {
 		log.Error().Err(err).Msgf("[repository/get_order_detail] Failed to get items: %v", err)
 		return order, http.StatusNotFound, err
 	}
 
+	// Iteratively scan items
 	var items = []dto.GetOrderDetailItemResponse{}
 	for rows.Next() {
 		var item = dto.GetOrderDetailItemResponse{}

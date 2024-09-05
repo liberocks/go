@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "Order Service",
     "collectionId": "41b41b29-c001-445f-a527-142af46c8012",
-    "dateExported": "2024-09-05T06:26:37.152Z",
+    "dateExported": "2024-09-05T12:32:16.458Z",
     "version": "1.2",
     "folders": [],
     "requests": [
@@ -15,14 +15,79 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-09-05T06:21:05.037Z",
-            "modified": "2024-09-05T06:24:23.848Z",
+            "modified": "2024-09-05T06:30:47.995Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\"orderedAt\":\"2019-11-09T21:21:46+00:00\",\"customerName\":\"Fitri\",\"items\":[{\"name\":\"iPhone\",\"description\":\"iPhone 11 Pro\",\"quantity\":2}]}",
+                "raw": "{\n  \"orderedAt\": \"2019-11-09T21:21:46+00:00\",\n  \"customerName\": \"Fitri\",\n  \"items\":[\n    {\n      \"name\": \"iPhone\",\n      \"description\": \"iPhone 11 Pro\",\n      \"quantity\": 2\n    }\n  ]\n}",
                 "form": []
             }
+        },
+        {
+            "_id": "e78c7a7d-be6e-46a4-96ee-a6da4d7ba936",
+            "colId": "41b41b29-c001-445f-a527-142af46c8012",
+            "containerId": "",
+            "name": "Update Order",
+            "url": "http://0.0.0.0:8080/orders/0191c1c9-025d-7704-926d-33a4a0c92877?page=1&limit=20",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-09-05T06:48:14.364Z",
+            "modified": "2024-09-05T12:08:23.272Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "20",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"orderedAt\": \"2022-11-09T21:21:46+00:00\",\n    \"customerName\": \"Fitri Tesss Editttt\",\n    \"items\": [\n        {\n            \"name\": \"iPhone Edittt\",\n            \"description\": \"iPhone 11 Pro\",\n            \"quantity\": 2000\n        }\n    ]\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "aa232548-1496-4262-8bb2-a50f99f235ba",
+            "colId": "41b41b29-c001-445f-a527-142af46c8012",
+            "containerId": "",
+            "name": "Get Orders",
+            "url": "http://0.0.0.0:8080/orders",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-09-05T12:29:23.134Z",
+            "modified": "2024-09-05T12:29:38.094Z",
+            "headers": []
+        },
+        {
+            "_id": "261176f4-f03f-46b4-b7da-7015ce1ef0cf",
+            "colId": "41b41b29-c001-445f-a527-142af46c8012",
+            "containerId": "",
+            "name": "Get Order Detail",
+            "url": "http://0.0.0.0:8080/orders/0191c1c9-025d-7704-926d-33a4a0c92877",
+            "method": "GET",
+            "sortNum": 25000,
+            "created": "2024-09-05T10:44:00.521Z",
+            "modified": "2024-09-05T10:50:32.583Z",
+            "headers": []
+        },
+        {
+            "_id": "61ed1d95-4f1c-4c0a-b5f5-08e1a24741d5",
+            "colId": "41b41b29-c001-445f-a527-142af46c8012",
+            "containerId": "",
+            "name": "Delete Order",
+            "url": "http://0.0.0.0:8080/orders/0191c112-5a81-74f9-8028-7edac1a80b22",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-09-05T06:56:16.831Z",
+            "modified": "2024-09-05T07:25:09.913Z",
+            "headers": []
         }
     ],
-    "ref": "3t2fKJeaQrVBevzvy4FjG3agOHauRkjbYhgko_R8e6x1NQX7O3u0lFLD9-iG8zMb4IoSJrh9oTYroBSbYSuU_w"
+    "ref": "3t2fKJeaQrVBevzvy4FjG4hFU326gLIv2SqKRXOrriuxwqh6llyzk22BUNqjPOSTPv1x7s6fY6esujmc5H1Y7Q"
 }

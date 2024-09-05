@@ -14,6 +14,7 @@ func GetOrders(page int, limit int) (dto.GetOrdersResponse, int, error) {
 
 	var orders = dto.GetOrdersResponse{}
 
+	// Get orders from the orders table
 	rows, err := db.Query(repository.GET_ORDERS_STATEMENT, limit, (page-1)*limit)
 	if err != nil {
 		log.Error().Err(err).Msgf("[repository/get_order_detail] Failed to get order: %v", err)
@@ -21,6 +22,7 @@ func GetOrders(page int, limit int) (dto.GetOrdersResponse, int, error) {
 		return orders, http.StatusInternalServerError, err
 	}
 
+	// Iteratively scan orders
 	for rows.Next() {
 		var order = dto.GetOrdersDataResponse{}
 		err = rows.Scan(&order.Id, &order.CustomerName, &order.OrderedAt, &order.CreatedAt, &order.UpdatedAt)
@@ -30,13 +32,14 @@ func GetOrders(page int, limit int) (dto.GetOrdersResponse, int, error) {
 			return orders, http.StatusInternalServerError, err
 		}
 
-		// Insert items into the order_items table
+		// Get items from the items table
 		itemRows, err := db.Query(repository.GET_ITEMS_STATEMENT, order.Id)
 		if err != nil {
 			log.Error().Err(err).Msgf("[repository/get_order_detail] Failed to get items: %v", err)
 			return orders, http.StatusNotFound, err
 		}
 
+		// Iteratively scan items
 		var items = []dto.GetOrdersDataItemResponse{}
 		for itemRows.Next() {
 			var item = dto.GetOrdersDataItemResponse{}
@@ -52,10 +55,11 @@ func GetOrders(page int, limit int) (dto.GetOrdersResponse, int, error) {
 		orders.Data = append(orders.Data, order)
 	}
 
-	// count total orders
+	// Count total orders
 	var totalOrders int
 	err = db.QueryRow(repository.COUNT_ORDERS_STATEMENT).Scan(&totalOrders)
 
+	// Calculate pagination
 	orders.Limit = limit
 	orders.Page = page
 	orders.Total = totalOrders

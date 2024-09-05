@@ -13,20 +13,20 @@ func updateOrderHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
 
-	var updateOrderPayload dto.UpdateOrderPayload
+	var payload dto.UpdateOrderPayload
 	decoder := json.NewDecoder(r.Body)
-	err := decoder.Decode(&updateOrderPayload)
+	err := decoder.Decode(&payload)
 	if err != nil {
 		http.Error(w, "", http.StatusBadRequest)
 		return
 	}
 
-	if err := updateOrderPayload.Validate(); err != nil {
+	if err := payload.Validate(); err != nil {
 		http.Error(w, "", http.StatusBadRequest)
 		return
 	}
 
-	orderId, status, err := service.UpdateOrder(id, updateOrderPayload.CustomerName, updateOrderPayload.OrderedAt, updateOrderPayload.Items)
+	orderId, status, err := service.UpdateOrder(id, payload.CustomerName, payload.OrderedAt, payload.Items)
 	if status != http.StatusOK {
 		http.Error(w, "", status)
 		return

@@ -17,7 +17,7 @@ type UpdateOrderPayload struct {
 }
 
 type UpdateOrderResponse struct {
-	OrderId string `json:"order_id"`
+	OrderId string `json:"id"`
 }
 
 func (d *UpdateOrderPayload) Validate() error {

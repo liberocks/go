@@ -13,7 +13,7 @@ import (
 func CreateOrder(customerName string, orderedAt string, items []dto.CreateOrderItemPayload) (string, int, error) {
 	db := helpers.GetDB()
 
-	// generate uuid
+	// Generate uuid
 	id, err := uuid.NewV7()
 	if err != nil {
 		log.Error().Err(err).Msg("[repository/create_order] Failed to generate UUID")
@@ -35,6 +35,7 @@ func CreateOrder(customerName string, orderedAt string, items []dto.CreateOrderI
 		}
 	}()
 
+	// Insert order into the orders table
 	_, err = tx.Exec(repository.CREATE_ORDER_STATEMENT, id, customerName, orderedAt)
 	if err != nil {
 		tx.Rollback()
@@ -45,7 +46,14 @@ func CreateOrder(customerName string, orderedAt string, items []dto.CreateOrderI
 
 	// Insert items into the order_items table
 	for _, item := range items {
-		_, err := tx.Exec(repository.CREATE_ITEM_STATEMENT, item.Name, item.Description, item.Quantity, id)
+		// Generate uuid
+		itemId, err := uuid.NewV7()
+		if err != nil {
+			log.Error().Err(err).Msg("[repository/create_order] Failed to generate UUID")
+			return "", http.StatusInternalServerError, err
+		}
+
+		_, err = tx.Exec(repository.CREATE_ITEM_STATEMENT, itemId, item.Name, item.Description, item.Quantity, id)
 		if err != nil {
 			tx.Rollback()
 			log.Error().Err(err).Msgf("[repository/create_order] Failed to insert item: %v", err)
@@ -54,6 +62,7 @@ func CreateOrder(customerName string, orderedAt string, items []dto.CreateOrderI
 		}
 	}
 
+	// Commit the transaction
 	err = tx.Commit()
 	if err != nil {
 		log.Error().Err(err).Msgf("[repository/create_order] Failed to commit transaction: %v", err)

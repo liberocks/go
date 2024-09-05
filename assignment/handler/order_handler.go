@@ -10,20 +10,23 @@ import (
 )
 
 func createOrderHandler(w http.ResponseWriter, r *http.Request) {
-	var createOrderPayload dto.CreateOrderPayload
+	// Parse request body
+	var payload dto.CreateOrderPayload
 	decoder := json.NewDecoder(r.Body)
-	err := decoder.Decode(&createOrderPayload)
+	err := decoder.Decode(&payload)
 	if err != nil {
 		http.Error(w, "", http.StatusBadRequest)
 		return
 	}
 
-	if err := createOrderPayload.Validate(); err != nil {
+	// Validate request body
+	if err := payload.Validate(); err != nil {
 		http.Error(w, "", http.StatusBadRequest)
 		return
 	}
 
-	orderId, status, err := service.CreateOrder(createOrderPayload.CustomerName, createOrderPayload.OrderedAt, createOrderPayload.Items)
+	// Creating orders
+	orderId, status, err := service.CreateOrder(payload.CustomerName, payload.OrderedAt, payload.Items)
 	if status != http.StatusCreated {
 		http.Error(w, "", status)
 		return
@@ -39,6 +42,7 @@ func createOrderHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getOrdersHandler(w http.ResponseWriter, r *http.Request) {
+	// Parse query parameters
 	rawQuery := r.URL.Query()
 
 	query := dto.GetOrdersQuery{
@@ -58,11 +62,13 @@ func getOrdersHandler(w http.ResponseWriter, r *http.Request) {
 		query.Limit = limit
 	}
 
+	// Validate query parameters
 	if err := query.Validate(); err != nil {
 		http.Error(w, "", http.StatusBadRequest)
 		return
 	}
 
+	// Get orders using specified query parameters
 	orders, status, err := service.GetOrders(query.Page, query.Limit)
 	if status != http.StatusOK {
 		http.Error(w, "", status)
