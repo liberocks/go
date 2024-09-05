@@ -1,0 +1,28 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "Order Service",
+    "collectionId": "41b41b29-c001-445f-a527-142af46c8012",
+    "dateExported": "2024-09-05T06:26:37.152Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "763dfff7-24af-4701-826f-bcd354a4a17c",
+            "colId": "41b41b29-c001-445f-a527-142af46c8012",
+            "containerId": "",
+            "name": "Create Order",
+            "url": "http://0.0.0.0:8080/orders",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-09-05T06:21:05.037Z",
+            "modified": "2024-09-05T06:24:23.848Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\"orderedAt\":\"2019-11-09T21:21:46+00:00\",\"customerName\":\"Fitri\",\"items\":[{\"name\":\"iPhone\",\"description\":\"iPhone 11 Pro\",\"quantity\":2}]}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "3t2fKJeaQrVBevzvy4FjG3agOHauRkjbYhgko_R8e6x1NQX7O3u0lFLD9-iG8zMb4IoSJrh9oTYroBSbYSuU_w"
+}
